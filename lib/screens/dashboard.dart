@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poc_byte_bank_v2/screens/contacts_list.dart';
+import 'package:poc_byte_bank_v2/screens/transactions_list.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -18,23 +19,52 @@ class Dashboard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Image.asset('images/bytebank_logo.png'),
           ),
-          Row(
-            children: [
-              _FeatureItem('Transfer', Icons.monetization_on),
-              _FeatureItem('Transaction Feed', Icons.description),
-            ],
+          Container(
+            height: 100,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                _FeatureItem(
+                  'Transfer',
+                  Icons.monetization_on,
+                  onClick: () {
+                    _showContactsList(context);
+                  },
+                ),
+                _FeatureItem(
+                  'Transaction Feed',
+                  Icons.description,
+                  onClick: () => _showTransactionList(context),
+                ),
+              ],
+            ),
           ),
         ],
       ),
     );
+  }
+
+  void _showContactsList(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => ContactList()));
+  }
+
+  _showTransactionList(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => TransactionsList()));
   }
 }
 
 class _FeatureItem extends StatelessWidget {
   final String name;
   final IconData icon;
+  final Function? onClick;
 
-  const _FeatureItem(this.name, this.icon);
+  const _FeatureItem(
+    this.name,
+    this.icon, {
+    @required this.onClick,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +73,10 @@ class _FeatureItem extends StatelessWidget {
       child: Material(
         color: Theme.of(context).primaryColor,
         child: InkWell(
-          onTap: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => ContactList()));
-          },
+          onTap: () => onClick!(),
           child: Container(
             padding: const EdgeInsets.all(8.0),
             color: Theme.of(context).primaryColor,
-            height: 100,
             width: 150,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
