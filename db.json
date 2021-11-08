@@ -1,0 +1,22 @@
+{
+    "transactions": [
+        {
+            "id": "78a6122a-60a7-414c-90c3-034b35e476be",
+            "value": 200.00,
+            "contact": {
+                "name": "gui",
+                "accountNumber": 1000
+            },
+            "dateTime": "2021-10-31 16:53:20"
+        },
+        {
+            "id": "78a6122a-60a7-414c-90c3-034b35e476bf",
+            "value": 250.00,
+            "contact": {
+                "name": "gui",
+                "accountNumber": 1000
+            },
+            "dateTime": "2021-11-01 16:53:20"
+        }
+    ]
+}

@@ -17,4 +17,6 @@ samples, guidance on mobile development, and a full API reference.
 
 
 https://github.com/alura-cursos/bytebank-api/tree/runnable
-java -jar server.jar
+```
+npm run start
+```
